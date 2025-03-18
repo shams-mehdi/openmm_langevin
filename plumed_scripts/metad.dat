@@ -1,0 +1,18 @@
+p: POSITION ATOM=1
+
+# Apply well-tempered metadynamics on the x-coordinate
+METAD ...
+   LABEL=mtd
+   ARG=p.x,p.y
+   PACE=100         # Deposit a bias every 500 steps
+   SIGMA=0.05,0.05        # Gaussian width (nm)
+   HEIGHT=1.0       # Initial Gaussian height (kJ/mol)
+   TEMP=200         # Simulation temperature (K)
+   BIASFACTOR=50    # Well-tempered metadynamics bias factor
+   FILE=data/HILLS_mb       # Output file to store bias history
+   GRID_MIN=-5,-5
+   GRID_MAX=5,5
+   CALC_RCT
+... METAD
+
+PRINT STRIDE=1 ARG=p.x,p.y,p.z,mtd.bias,mtd.rbias FILE=data/Muller_brown_meta

@@ -1,0 +1,3 @@
+p: POSITION ATOM=1
+
+PRINT STRIDE=1 ARG=p.x,p.y,p.z FILE=data/Muller_brown
